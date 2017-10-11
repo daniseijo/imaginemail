@@ -5,6 +5,7 @@ import json
 
 class TMDBInfo:
     BASE_URL = 'https://api.themoviedb.org/3/search/movie'
+    IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w600'
 
     def __init__(self, title):
         self.movie_json = self.search_film(title)
@@ -37,3 +38,6 @@ class TMDBInfo:
 
     def get_overview(self):
         return self._get_from_json('overview')
+
+    def get_image(self):
+        return self.IMAGE_BASE_URL + self._get_from_json('poster_path')
