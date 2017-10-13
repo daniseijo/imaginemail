@@ -1,42 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>OpenStack notification</title>
-  <style type="text/css">
-    span.bold {
-      font-weight: bold;
-    }
-
-    table.noborder {
-      border: 0px;
-      padding: 8px;
-    }
-
-    th {
-      text-align: left;
-    }
-  </style>
-</head>
-<body>
+{% extends "base.html" %}
+{% block movies %}
 {% for movie in movies %}
-  <p>
-    Dear {{ movie.title }},
-  </p>
-
-  {{ movie.extra_info }}
-
+<tr>
+    <td>
+        <h3>{{ movie.title }}</h3>
+        <p style="text-align: center"><img class="banner" src="{{ movie.image }}" alt="Estreno"></p>
+        {{ movie.info }}
+        <p class="callout">
+            <strong>Madrid</strong><br>{{ movie.purchase_info }}<br><a href="{{ movie.purchase_link }}">Comprar entradas &raquo;</a>
+        </p>
+    </td>
+</tr>
 {% endfor %}
-<p>
-  Regards, <br/>
-  <br/>
-  The Platform Engineering OpenStack support team
-</p>
-<p>
-  -- <br/>
-  This email has been sent to the email address associated with your OpenStack login.
-  They only relate to events that may affect your OpenStack resources. If you
-  receive multiple copies of this email, it may be due to the fact that you
-  are a member of multiple projects.
-</p>
-</body>
-</html>
+{% endblock %}
