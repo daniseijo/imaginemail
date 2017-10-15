@@ -2,6 +2,7 @@ import os
 import smtplib
 from email.mime.text import MIMEText
 
+import click
 from jinja2 import Environment, FileSystemLoader
 
 from connection import Connection
@@ -23,8 +24,12 @@ class EmailNotification:
         return msg
 
     def send_email(self, email_to, movies):
+
         if len(movies) == 0:
+            click.echo('No new movies to notify.')
             return
+
+        click.echo('Sending email to: %s.' % email_to)
         msg_str = self._mail_render({'movies': movies}, 'template')
 
         msg = MIMEText(msg_str, 'html')
@@ -38,6 +43,7 @@ class EmailNotification:
         server.login(os.environ.get('EMAIL'), os.environ.get('EMAIL_PASSWORD'))
         server.send_message(msg)
         for movie in movies:
+            click.echo('Send email with new movie "%s".' % movie.title)
             self._update_sent_email(movie)
         server.quit()
 

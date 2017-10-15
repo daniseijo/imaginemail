@@ -1,10 +1,9 @@
-import codecs
 import re
 
+import click
 from bs4 import BeautifulSoup
 import requests
 
-from connection import Connection
 from movie import Movie
 
 
@@ -12,7 +11,7 @@ class Scraper:
     BASE_URL = 'https://www.imaginbank.com'
     movies = []
 
-    def get_info(self):
+    def check_and_save_new_movies(self):
         soup = self.get_soup_from_web('/descuentos/experiencias_es.html')
 
         for discount in soup.find_all("li", class_="descuento"):
@@ -36,6 +35,7 @@ class Scraper:
 
         madrid_info = detail_view.find(class_="popup_informacion").find(string=re.compile("Madrid"))
 
+        # TODO Save movie here but not notify when sending email.
         if not madrid_info:
             return
 
@@ -50,15 +50,11 @@ class Scraper:
         return self.get_soup_from_web(detail_url)
 
     def get_soup_from_web(self, web):
+        click.echo('Parsing web: "%s".' % self.BASE_URL + web)
         resp = requests.get(self.BASE_URL + web)
         if resp.ok:
             resp.encoding = 'utf-8'
             return BeautifulSoup(resp.text, 'html.parser')
         else:
+            click.echo('Error parsing web.')
             raise Exception('Error {code}: {msg}'.format(code=resp.status_code, msg=resp.text))
-
-
-if __name__ == '__main__':
-    scraper = Scraper()
-    scraper.get_info()
-    Movie.notify_to_email('danisanse1991@gmail.com')

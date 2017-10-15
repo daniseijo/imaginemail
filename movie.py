@@ -1,5 +1,7 @@
 import os
 
+import click
+
 from connection import Connection
 from notification import EmailNotification
 from tmdb import TMDBInfo
@@ -17,6 +19,7 @@ class Movie:
         # self._get_tmdb_info()
 
     def register_movie(self):
+        click.echo('Registering movie "%s" on database.' % self.title)
         with Connection(self.db_name) as conn:
             conn.insert_movie(self)
 
