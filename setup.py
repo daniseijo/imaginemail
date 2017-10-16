@@ -17,7 +17,7 @@ setup(
     author='Daniel Seijo',
     author_email='daniseijo12@gmail.com',
     url='https://github.com/daniseijo/imaginemail',
-    download_url='https://github.com/daniseijo/imaginemail/archive/1.0.0.tar.gz',
+    download_url='https://github.com/daniseijo/imaginemail/archive/1.0.2.tar.gz',
     license='MIT',
     install_requires=load_requirements('requirements.txt'),
     entry_points={
