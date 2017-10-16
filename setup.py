@@ -11,13 +11,13 @@ def load_requirements(filename):
 setup(
     name='ImaginEmail',
     packages=['imaginemail'],
-    version='1.0.2',
-    description='ImaginEmail is a program that search on an specific imaginbank web'
-                'and notify an user about new offers and films next to Madrid',
+    version='1.0.3',
+    description='ImaginEmail is a program that searches on an specific imaginbank web '
+                'and notifies a user about new offers and films next to Madrid.',
     author='Daniel Seijo',
     author_email='daniseijo12@gmail.com',
     url='https://github.com/daniseijo/imaginemail',
-    download_url='https://github.com/daniseijo/imaginemail/archive/1.0.2.tar.gz',
+    download_url='https://github.com/daniseijo/imaginemail/archive/1.0.3.tar.gz',
     license='MIT',
     install_requires=load_requirements('requirements.txt'),
     entry_points={
