@@ -15,6 +15,7 @@ class EmailNotification:
         else:
             self.template_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), template_dir)
         self.env = Environment(loader=FileSystemLoader(self.template_dir))
+        click.echo(self.template_dir)
         self.db_name = os.environ.get('DB_NAME')
 
     def _mail_render(self, data, template):

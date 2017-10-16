@@ -1,6 +1,6 @@
 import io
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 def load_requirements(filename):
@@ -10,7 +10,8 @@ def load_requirements(filename):
 
 setup(
     name='ImaginEmail',
-    packages=['imaginemail'],
+    packages=find_packages(),
+    include_package_data=True,
     version='1.0.3',
     description='ImaginEmail is a program that searches on an specific imaginbank web '
                 'and notifies a user about new offers and films next to Madrid.',
