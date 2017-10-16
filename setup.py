@@ -11,7 +11,7 @@ def load_requirements(filename):
 setup(
     name='ImaginEmail',
     packages=['imaginemail'],
-    version='1.0.1',
+    version='1.0.2,
     description='ImaginEmail is a program that search on an specific imaginbank web'
                 'and notify an user about new offers and films next to Madrid',
     author='Daniel Seijo',

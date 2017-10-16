@@ -20,11 +20,11 @@ class Scraper:
                 self.compose_and_save_movie(detail_view)
 
     @staticmethod
-    def exists_movie(discount: BeautifulSoup):
+    def exists_movie(discount):
         title_str = discount.find(class_="informacion-top").h2.text
         return Movie.exists_movie(title_str)
 
-    def compose_and_save_movie(self, detail_view: BeautifulSoup):
+    def compose_and_save_movie(self, detail_view):
         image_str = str(self.BASE_URL + detail_view.find(class_="imagen-descuento").img.get('src'))
         title_str = str(detail_view.find(class_="informacion-top").h1.text)
 
