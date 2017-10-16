@@ -1,13 +1,13 @@
 import click
 
-from movie import Movie
-from scraper import Scraper
+from .movie import Movie
+from .scraper import Scraper
 
 
 @click.group()
 @click.version_option()
 def cli():
-    """ImaginMail looks up for new films in the imaginbank webpage and register them in a DB.
+    """ImaginEmail looks up for new films in the imaginbank webpage and register them in a DB.
     After that, you can also notify an specific email if you want."""
     pass
 

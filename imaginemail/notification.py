@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 import click
 from jinja2 import Environment, FileSystemLoader
 
-from connection import Connection
+from .connection import Connection
 
 
 class EmailNotification:
@@ -24,7 +24,6 @@ class EmailNotification:
         return msg
 
     def send_email(self, email_to, movies):
-
         if len(movies) == 0:
             click.echo('No new movies to notify.')
             return

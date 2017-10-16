@@ -2,9 +2,9 @@ import os
 
 import click
 
-from connection import Connection
-from notification import EmailNotification
-from tmdb import TMDBInfo
+from .connection import Connection
+from .notification import EmailNotification
+from .tmdb import TMDBInfo
 
 
 class Movie:
@@ -12,11 +12,10 @@ class Movie:
         self.title = title
         self.image = image
         self.info = info
-        self.purchase_info = ' '.join(purchase_info.replace('\n\r', '').split())
+        self.purchase_info = purchase_info
         self.purchase_link = purchase_link
 
         self.db_name = os.environ.get('DB_NAME')
-        # self._get_tmdb_info()
 
     def register_movie(self):
         click.echo('Registering movie "%s" on database.' % self.title)

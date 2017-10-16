@@ -42,4 +42,4 @@ class Connection:
         self.cursor.execute("UPDATE movies SET email_sent='True' WHERE title=?", title_tuple)
 
     def get_not_notified_movies(self):
-        return self.cursor.execute("SELECT * FROM movies WHERE email_sent='False'")
+        return self.cursor.execute("SELECT * FROM movies WHERE email_sent='False' AND purchase_info NOT NULL")

@@ -1,6 +1,6 @@
 import io
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 
 def load_requirements(filename):
@@ -9,17 +9,19 @@ def load_requirements(filename):
 
 
 setup(
-    name='ImaginMail',
+    name='ImaginEmail',
+    packages=['imaginemail'],
     version='1.0.0',
-    description='ImaginMail is a program that search on an specific imaginbank web and notify an user'
-                'about new offers and films next to Madrid',
+    description='ImaginEmail is a program that search on an specific imaginbank web'
+                'and notify an user about new offers and films next to Madrid',
     author='Daniel Seijo',
     author_email='daniseijo12@gmail.com',
+    url='https://github.com/daniseijo/imaginemail',
+    download_url='https://github.com/daniseijo/imaginemail/archive/1.0.0.tar.gz',
     license='MIT',
-    packages=find_packages(),
-    include_package_data=True,
     install_requires=load_requirements('requirements.txt'),
     entry_points={
-        'console_scripts': ['imaginmail = imaginmail:cli'],
+        'console_scripts': ['imaginemail = imaginemail.imaginemail:cli'],
     },
+    keywords=['scraper', 'imaginbank', 'email'],
 )

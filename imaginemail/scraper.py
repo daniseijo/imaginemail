@@ -1,10 +1,10 @@
 import re
 
 import click
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
 
-from movie import Movie
+from .movie import Movie
 
 
 class Scraper:
@@ -35,12 +35,13 @@ class Scraper:
 
         madrid_info = detail_view.find(class_="popup_informacion").find(string=re.compile("Madrid"))
 
-        # TODO Save movie here but not notify when sending email.
         if not madrid_info:
-            return
-
-        purchase_info_str = str(madrid_info.next_element)
-        purchase_link_str = str(madrid_info.find_next('a').get('href'))
+            purchase_info_str = None
+            purchase_link_str = None
+        else:
+            purchase_info_str = str(madrid_info.next_element)
+            purchase_info_str = ' '.join(purchase_info_str.replace('\n\r', '').split())
+            purchase_link_str = str(madrid_info.find_next('a').get('href'))
 
         movie = Movie(title_str, image_str, info_str, purchase_info_str, purchase_link_str)
         movie.register_movie()
@@ -50,7 +51,7 @@ class Scraper:
         return self.get_soup_from_web(detail_url)
 
     def get_soup_from_web(self, web):
-        click.echo('Parsing web: "%s".' % self.BASE_URL + web)
+        click.echo('Parsing web: "%s".' % (self.BASE_URL + web))
         resp = requests.get(self.BASE_URL + web)
         if resp.ok:
             resp.encoding = 'utf-8'
