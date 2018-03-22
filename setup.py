@@ -12,13 +12,13 @@ setup(
     name='ImaginEmail',
     packages=find_packages(),
     include_package_data=True,
-    version='1.0.3',
+    version='1.1.0',
     description='ImaginEmail is a program that searches on an specific imaginbank web '
                 'and notifies a user about new offers and films next to Madrid.',
     author='Daniel Seijo',
     author_email='daniseijo12@gmail.com',
     url='https://github.com/daniseijo/imaginemail',
-    download_url='https://github.com/daniseijo/imaginemail/archive/1.0.3.tar.gz',
+    download_url='https://github.com/daniseijo/imaginemail/archive/1.1.0.tar.gz',
     license='MIT',
     install_requires=load_requirements('requirements.txt'),
     entry_points={

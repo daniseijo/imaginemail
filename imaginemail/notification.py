@@ -28,22 +28,24 @@ class EmailNotification:
             click.echo('No new movies to notify.')
             return
 
-        click.echo('Sending email to: %s.' % email_to)
-        msg_str = self._mail_render({'movies': movies}, 'template')
+        click.echo('Sending emails to: %s.' % email_to)
 
-        msg = MIMEText(msg_str, 'html')
         server = smtplib.SMTP('smtp.gmail.com', 587)
-
-        msg['Subject'] = "Nuevo preestreno con ImaginBank"
-        msg['From'] = os.environ.get('EMAIL')
-        msg['To'] = email_to
-
         server.starttls()
         server.login(os.environ.get('EMAIL'), os.environ.get('EMAIL_PASSWORD'))
-        server.send_message(msg)
+
         for movie in movies:
+            msg_str = self._mail_render({'movies': [movie]}, 'template')
+            msg = MIMEText(msg_str, 'html')
+
+            msg['Subject'] = "Nuevo preestreno con ImaginBank"
+            msg['From'] = os.environ.get('EMAIL')
+            msg['To'] = email_to
+
+            server.send_message(msg)
             click.echo('Send email with new movie "%s".' % movie.title)
             self._update_sent_email(movie)
+
         server.quit()
 
     def _update_sent_email(self, movie):
